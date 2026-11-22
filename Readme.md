@@ -1,0 +1,1 @@
+![AI Interview Platform Architecture Diagram.png](../AI%20Interview%20Platform%20Architecture%20Diagram.png)
