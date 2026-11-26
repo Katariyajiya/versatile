@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Versatile — AI Interview & Viva Coach</title>
+    <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+<main class="container">
+    <header>
+        <h1>Versatile AI Interviewer</h1>
+        <p class="subtitle">Adaptive technical interviews, vivas &amp; resume defense powered by local AI</p>
+    </header>
+
+    <!-- STEP 1: SETUP CARD -->
+    <section id="setup-card" class="card">
+        <h2>Configure Your Session</h2>
+
+        <label for="interviewType">Scenario / Interview Type</label>
+        <select id="interviewType">
+            <option value="Software Engineering Placement Interview">Software Engineering Placement Interview</option>
+            <option value="Resume & Project Technical Defense">Resume &amp; Project Technical Defense</option>
+            <option value="College Viva Examination">College Viva Examination</option>
+            <option value="Subject Revision & Concept Check">Subject Revision &amp; Concept Check</option>
+        </select>
+
+        <div class="tabs">
+            <button type="button" id="tab-topic" class="tab active">Topic / Notes</button>
+            <button type="button" id="tab-pdf" class="tab">Upload PDF (Resume / Syllabus)</button>
+        </div>
+
+        <div id="panel-topic">
+            <label for="topicInput">Topic or Study Notes</label>
+            <textarea id="topicInput" rows="4" placeholder="e.g., Java Multithreading, Spring Boot REST APIs, DBMS Normalization..."></textarea>
+        </div>
+
+        <div id="panel-pdf" class="hidden">
+            <label for="pdfFile">Choose PDF File (max 10MB)</label>
+            <input type="file" id="pdfFile" accept="application/pdf" />
+        </div>
+
+        <label for="maxQuestions">Number of Questions (1–15)</label>
+        <input type="number" id="maxQuestions" value="4" min="1" max="15" />
+
+        <button id="startBtn" class="btn primary">Start Interview</button>
+    </section>
+
+    <!-- STEP 2: ACTIVE INTERVIEW CARD -->
+    <section id="interview-card" class="card hidden">
+        <div class="progress-bar">
+            <span id="turnBadge">Question 1 of 4</span>
+            <button id="endEarlyBtn" class="btn secondary small">Finish &amp; View Report</button>
+        </div>
+
+        <div id="feedbackBox" class="feedback hidden">
+            <div class="feedback-header">
+                <strong>Previous Answer Feedback</strong>
+                <span id="scoreBadge" class="score-badge">8/10</span>
+            </div>
+            <p id="feedbackText"></p>
+        </div>
+
+        <div id="questionBox" class="question-box">
+            <span class="label">Interviewer</span>
+            <p id="questionText">Loading first question...</p>
+        </div>
+
+        <div id="answerSection">
+            <div class="answer-header">
+                <label for="answerInput">Your Answer (Speak or Type)</label>
+                <button type="button" id="micBtn" class="btn mic">🎙️ Start Speaking</button>
+            </div>
+            <textarea id="answerInput" rows="5" placeholder="Type your answer or click 'Start Speaking' to dictate..."></textarea>
+            <button id="submitBtn" class="btn primary">Submit Answer</button>
+        </div>
+
+        <div id="completedActions" class="hidden">
+            <p class="done-banner">Interview complete! Generate your detailed performance report below.</p>
+            <button id="reportBtn" class="btn primary">View Final Performance Report</button>
+        </div>
+    </section>
+
+    <!-- STEP 3: FINAL REPORT CARD -->
+    <section id="report-card" class="card hidden">
+        <div class="report-header">
+            <h2>Performance Report</h2>
+            <div id="avgScoreBadge" class="avg-score">Avg: 0.0 / 10</div>
+        </div>
+
+        <p id="reportSummary" class="summary"></p>
+
+        <div class="report-grid">
+            <div>
+                <h3>Strengths</h3>
+                <ul id="strengthsList"></ul>
+            </div>
+            <div>
+                <h3>Areas for Improvement</h3>
+                <ul id="improvementsList"></ul>
+            </div>
+        </div>
+
+        <h3>Recommended Study Topics</h3>
+        <ul id="studyList"></ul>
+
+        <button id="restartBtn" class="btn primary">Start New Session</button>
+    </section>
+
+    <div id="loader" class="loader hidden">
+        <div class="spinner"></div>
+        <span id="loaderText">AI Interviewer is thinking...</span>
+    </div>
+
+    <div id="errorBanner" class="error hidden"></div>
+</main>
+
+<script src="app.js"></script>
+</body>
+</html>
